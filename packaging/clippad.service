@@ -1,0 +1,11 @@
+[Unit]
+Description=Clippad clipboard manager (per-user)
+
+[Service]
+Type=simple
+# Update the ExecStart path to your installed location, e.g. /home/youruser/.local/clippad/venv/bin/python -m src.main
+ExecStart=/home/<user>/.local/clippad/venv/bin/python -m src.main
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

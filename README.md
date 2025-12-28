@@ -33,3 +33,54 @@ Next steps
 - Improve visuals (icons and styling)
 - Add import/export for snippets
 - Add locking or encryption for sensitive snippets
+
+Installation (one-step installer)
+
+To install Clippad for the current user (copies the project to ~/.local/clippad, creates a venv, installs deps, creates a launcher in ~/.local/bin and enables autostart):
+
+```bash
+./install.sh
+```
+
+After install ensure `~/.local/bin` is in your PATH (many distros add it automatically). Start Clippad with:
+
+```bash
+clippad
+```
+
+To uninstall the installed copy:
+
+```bash
+./uninstall.sh
+```
+
+If you prefer not to use the installer, you can run directly from the repo during development:
+
+```bash
+./clippad      # runs python -m src.main
+```
+
+Notes
+- The installer is per-user and does not require sudo.
+- If you prefer system-wide installation, change paths in `install.sh` accordingly.
+- Autostart is implemented using a desktop autostart entry (`~/.config/autostart/clippad.desktop`) which works with most Linux desktop environments.
+
+Systemd user service (optional)
+
+If you prefer using systemd user units (more robust autostart and restart on failure), you can enable the provided template at `packaging/clippad.service`:
+
+1. Edit `packaging/clippad.service` and update the `ExecStart` path to point to the installed venv python (e.g. `/home/youruser/.local/clippad/venv/bin/python -m src.main`).
+2. Copy it to `~/.config/systemd/user/clippad.service` and enable:
+
+```bash
+mkdir -p ~/.config/systemd/user
+cp packaging/clippad.service ~/.config/systemd/user/clippad.service
+systemctl --user daemon-reload
+systemctl --user enable --now clippad.service
+```
+
+To stop and disable:
+
+```bash
+systemctl --user disable --now clippad.service
+```

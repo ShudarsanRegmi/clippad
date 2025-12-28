@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Repo-local launcher for development. Use the installed launcher created by install.sh for a system-wide command.
+PYTHON=${PYTHON:-python3}
+exec "$PYTHON" -m src.main "$@"
