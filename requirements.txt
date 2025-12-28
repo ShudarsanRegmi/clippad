@@ -1,0 +1,5 @@
+PyQt5
+pynput
+pyperclip
+
+# Notes: On Linux, ensure python3-pyqt5 is available and for pyperclip you may need xclip or xsel.
