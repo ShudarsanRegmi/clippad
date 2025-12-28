@@ -53,6 +53,8 @@ def start_listener(mapping):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
+    # do not quit the app when the last window is closed; keep tray icon and hotkeys active
+    app.setQuitOnLastWindowClosed(False)
     storage = Storage()
     manager = Manager(storage)
 

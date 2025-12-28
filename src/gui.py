@@ -111,3 +111,9 @@ class Manager(QtWidgets.QMainWindow):
         self.raise_()
         self.activateWindow()
 
+    def closeEvent(self, event: QtGui.QCloseEvent) -> None:
+        """Intercept window close (X) and hide instead so the app keeps running in tray."""
+        # hide the window and ignore the close so the application stays alive
+        self.hide()
+        event.ignore()
+
